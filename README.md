@@ -1,2 +1,2 @@
 # sqlite-crud
- Simple Node.js CRUD, using SQLite3
+ Simple Node.js Database CRUD, using SQLite3
