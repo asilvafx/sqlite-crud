@@ -1,11 +1,13 @@
 const express = require('express');
-const { create, read, update, erase } = require('./crud');
+const { create, read, update, erase } = require('../crud');
 const app = express();
 
 // Middleware
 app.use(express.json());
 
 // Routes
+app.get("/", (req, res) => res.send("Node.js Express"));
+
 // Get all items from a specified table
 app.get('/:tableName', (req, res) => {
     const tableName = req.params.tableName;
@@ -56,8 +58,10 @@ app.delete('/:tableName/:id', (req, res) => {
 
 // Start the server
 if (process.env.NODE_ENV !== 'production') {
-    const PORT = parseInt(process.env.PORT) || 8080; // Use the PORT environment variable or default
+    const PORT = parseInt(process.env.PORT) || 3000; // Use the PORT environment variable or default
     app.listen(PORT, () => {
         console.log(`Server started on port ${PORT}!`);
     });
 }
+
+module.exports = app;
