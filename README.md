@@ -37,11 +37,6 @@ To install and set up the project, follow these steps:
   npm install
   ```
 
-3. Create a .env file in the root directory and set the following environment variables:
-  ```
-  PORT=3000
-  ```
-
 ## Usage
 To start the server, run:
   ```
