@@ -1,5 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
-const dbName = 'data.db';
+const dbName = './data.db';
 
 const db = new sqlite3.Database(dbName, (err) => {
     if (err) {
