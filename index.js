@@ -60,7 +60,4 @@ if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, () => {
         console.log(`Server started on port ${PORT}!`);
     });
-}
-
-// Export the app as a serverless function for Vercel
-module.exports = app;
+} 
