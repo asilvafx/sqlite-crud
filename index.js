@@ -1,13 +1,15 @@
 const express = require('express');
-const { createItem, readItems, updateItem, deleteItem } = require('./crud');
+const { create, read, update, erase } = require('./crud');
 const app = express();
 
 // Middleware
 app.use(express.json());
 
 // Routes
-app.get('/items', (req, res) => {
-    readItems((err, data) => {
+// Get all items from a specified table
+app.get('/:tableName', (req, res) => {
+    const tableName = req.params.tableName;
+    read(tableName, (err, data) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
@@ -15,28 +17,36 @@ app.get('/items', (req, res) => {
     });
 });
 
-app.post('/items', (req, res) => {
-    const { name, description } = req.body;
-    createItem(name, description, (err, data) => {
+// Create a new item in a specified table
+app.post('/:tableName', (req, res) => {
+    const tableName = req.params.tableName;
+    const data = req.body;
+    create(tableName, data, (err, result) => {
         if (err) {
             return res.status(500).send(err.message);
         }
-        res.status(201).send(`Item added with ID: ${data.id}`);
+        res.status(201).send(`Item added with ID: ${result.id}`);
     });
 });
 
-app.put('/items/:id', (req, res) => {
-    const { name, description } = req.body;
-    updateItem(req.params.id, name, description, (err) => {
+// Update an item in a specified table
+app.put('/:tableName/:id', (req, res) => {
+    const tableName = req.params.tableName;
+    const id = req.params.id;
+    const data = req.body;
+    update(tableName, id, data, (err) => {
         if (err) {
             return res.status(500).send(err.message);
         }
-        res.status(200).send(`Item updated with ID: ${req.params.id}`);
+        res.status(200).send(`Item updated with ID: ${id}`);
     });
 });
 
-app.delete('/items/:id', (req, res) => {
-    deleteItem(req.params.id, (err) => {
+// Delete an item from a specified table
+app.delete('/:tableName/:id', (req, res) => {
+    const tableName = req.params.tableName;
+    const id = req.params.id;
+    erase(tableName, id, (err) => {
         if (err) {
             return res.status(500).send(err.message);
         }
@@ -44,6 +54,7 @@ app.delete('/items/:id', (req, res) => {
     });
 });
 
+// Start the server
 app.listen(3000, () => {
     console.log(`Server started on port 3000!`);
 });
