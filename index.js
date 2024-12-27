@@ -56,8 +56,8 @@ app.delete('/:tableName/:id', (req, res) => {
 
 // Start the server
 if (process.env.NODE_ENV !== 'production') {
-    const PORT = process.env.PORT || 3000; // Use the PORT environment variable or default to 3000
+    const PORT = parseInt(process.env.PORT) || 8080; // Use the PORT environment variable or default
     app.listen(PORT, () => {
         console.log(`Server started on port ${PORT}!`);
     });
-} 
+}
