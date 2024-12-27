@@ -27,10 +27,10 @@ This project is a simple CRUD (Create, Read, Update, Delete) application built w
 To install and set up the project, follow these steps:
 
 1. Clone the repository:
-   ```
-   git clone https://github.com/asilvafx/sqlite-crud.git
-   cd sqlite-crud
-   ```
+  ```
+  git clone https://github.com/asilvafx/sqlite-crud.git
+  cd sqlite-crud
+  ```
 
 2. Install the dependencies:
   ```
